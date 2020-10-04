@@ -1,4 +1,4 @@
 #!/bin/bash
 
-export FLASK_APP=$1
+export FLASK_APP=src/$1
 flask run --host=0.0.0.0
