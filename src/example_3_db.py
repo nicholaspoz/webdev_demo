@@ -24,14 +24,9 @@ def get_count():
         return result[0] if result is not None else None
 
 
-def increment():
+def set_count(value):
     with _database() as db:
-        db.execute("UPDATE count SET count = count + 1 WHERE id = 1")
-
-
-def reset():
-    with _database() as db:
-        db.execute("UPDATE count SET count = 0 WHERE id = 1")
+        db.execute(f"UPDATE count SET count = ? WHERE id = 1", (value,))
 
 
 def close_connection(exception):

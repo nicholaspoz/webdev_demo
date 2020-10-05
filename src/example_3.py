@@ -1,4 +1,4 @@
-import example_3_db as DB
+import example_3_db as db
 from flask import Flask
 
 app = Flask(__name__)
@@ -6,24 +6,28 @@ app = Flask(__name__)
 
 @app.route("/increment")
 def increment():
-    DB.increment()
-    count = DB.get_count()
-    return {"count": count}
+    count = db.get_count()
+
+    new_count = count + 1
+    db.set_count(new_count)
+
+    return {"count": new_count}
 
 
 @app.route("/reset")
 def reset():
-    DB.reset()
-    count = DB.get_count()
-    return {"count": count}
+    new_count = 0
+    db.set_count(new_count)
+
+    return {"count": new_count}
 
 
-# When the server starts, initialize the DB connection
+# When the server starts, initialize the db connection
 with app.app_context():
-    DB.initialize()
+    db.initialize()
 
 
-# When the server stops, close the DB connection
+# When the server stops, close the db connection
 @app.teardown_appcontext
 def close_connection(exception):
-    DB.close_connection(exception)
+    db.close_connection(exception)
