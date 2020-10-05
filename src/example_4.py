@@ -1,4 +1,4 @@
-import example_3_db as db
+import example_4_db as db
 from flask import Flask
 
 app = Flask(__name__)
