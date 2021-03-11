@@ -11,15 +11,4 @@ def hello_world():
 # Take input from the client
 @app.route("/say-hello/<name>")
 def say_hello(name):
-    return f"Hello, {name}!"
-
-
-# Serve JSON
-@app.route("/dogs")
-def get_dogs():
-    return {
-        "results": [
-            {"name": "Scooby", "age": 9, "owner": "Shaggy"},
-            {"name": "Scrappy", "age": 2, "owner": "Nobody knows?"},
-        ]
-    }
+    return f"Hello, {name} {name}!"
